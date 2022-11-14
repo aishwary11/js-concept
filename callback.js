@@ -19,4 +19,4 @@ function callback(num, result, error) {
   else error({ msg: "Its a String", data: num });
 }
 
-callback("1", (res) => console.log(res, err), (err) => console.log(err));
+callback("1", (res) => console.log(res), (err) => console.log(err));
