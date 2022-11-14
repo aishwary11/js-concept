@@ -10,3 +10,13 @@ const callbacker = (num, cb) => {
   else return cb({ status: false, data: null });
 };
 callbacker(1, ({ status, data }) => console.log(status, data));
+
+/**
+ * with 2 callback function
+ */
+function callback(num, result, error) {
+  if (typeof num === "number") result({ msg: "Its a number", data: num });
+  else error({ msg: "Its a String", data: num });
+}
+
+callback("1", (res) => console.log(res, err), (err) => console.log(err));
