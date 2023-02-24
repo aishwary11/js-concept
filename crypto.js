@@ -15,8 +15,8 @@ String.prototype.SumOfLength = function (arg) {
 };
 const stringer = "abcdefghijklmnopqrstuvwxyz$%&*(@!1234567890";
 // console.log(stringer.randomValue(15));
-// console.log(str1.SumOfLength(str2));
+console.log(str1.SumOfLength(str2));
 String.prototype.strLength = function () {
   return this.length;
 };
-console.log('Aishwary'.strLength())
+// console.log('Aishwary'.strLength())
