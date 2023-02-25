@@ -38,11 +38,11 @@ class Dog extends Animal {
   }
 
   speak() {
-    console.log(`${this.name} barks.`);
+    return `${this.name} barks.`;
   }
 
   breedInfo() {
-    console.log(`${this.name} is a ${this.breed}.`);
+    console.log(`${this.name} is a ${this.breed}., ${this.speak()}`);
   }
 }
 
