@@ -8,9 +8,11 @@ async function fetchData(url) {
   cache[url] = data;
   return cache[url];
 }
+console.time();
 async function fetcher() {
   await fetchData('https://jsonplaceholder.typicode.com/posts');
   await fetchData('https://jsonplaceholder.typicode.com/posts');
   await fetchData('https://jsonplaceholder.typicode.com/posts');
 };
 fetcher();
+console.timeEnd();
