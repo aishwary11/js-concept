@@ -1,7 +1,6 @@
-const cache = {};
-
 async function fetchData(url) {
-  if (cache.hasOwnProperty(url)) {
+  let cache = {};
+  if (cache[url]) {
     return cache[url];
   }
   const data = await fetch(url).then(res => res.json());
