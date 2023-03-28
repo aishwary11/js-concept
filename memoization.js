@@ -1,12 +1,12 @@
 const memoize = fn => {
   const cache = {};
   return (...args) => {
-    if (JSON.stringify(args) in cache) {
-      console.log(cache);
-      return cache[JSON.stringify(args)];
+    const key = JSON.stringify(args);
+    if (cache[key]) {
+      return cache[key];
     };
     const result = fn(...args);
-    cache[JSON.stringify(args)] = result;
+    cache[key] = result;
     return result;
   };
 };
