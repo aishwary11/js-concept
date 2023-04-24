@@ -1,6 +1,6 @@
 const add = (a, b) => a + b;
-const callback = (num1, num2, cb) => cb(num1, num2);
-console.log(callback(1, 2, add));
+// const callback = (num1, num2, cb) => cb(num1, num2);
+// console.log(callback(1, 2, add));
 
 /**
  * Example 2
@@ -19,4 +19,4 @@ function callback(num, result, error) {
   else error({ msg: "Its a String", data: num });
 }
 
-callback("1", (res) => console.log(res), (err) => console.log(err));
+callback("1", (res) => console.log(res), (err) => console.error(err));
