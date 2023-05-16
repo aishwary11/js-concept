@@ -25,8 +25,16 @@ const add = a => b => c => a + b + c;
  */
 
 const curry = fn => curried = (...args) => fn.length !== args.length ? curried.bind(null, ...args) : fn(...args);
-
 const total = (x, y, z, a) => x + y + z - a;
-console.log(curry(total)(10)(20)(30));
+console.log(curry(total)(10)(20)(30)(40));
 const addCurry = (a) => (b) => (c) => a + b + c;
 
+/**
+ * Infinite Currying
+ */
+
+const infiniteCurr = (a) => (b) => {
+  if (b) return infiniteCurr(a + b);
+  else return a;
+};
+console.log(infiniteCurr(1)(2)(3)());
