@@ -1,74 +1,66 @@
 /**
- * Method 1
+ * using map
  */
-
-const memoize = fn => {
-  const cache = [];
-  return (...args) => {
-    const key = args.join();
-    const result = cache[key] ? cache[key] : fn(...args);
-    cache[key] = result;
-    return result;
-  };
-};
-
-// const memoize = fn => {
-//   const cache = {};
-//   return (...args) => {
-//     const key = JSON.stringify(args);// faster approach
-//     // const key = args[0]; // slower approach
-//     if (cache[key]) {
-//       return cache[key];
-//     };
-//     const result = fn(...args);
-//     cache[key] = result;
-//     return result;
-//   };
+// const memoizeMap = fn => {
+// 	const cache = new Map();
+// 	return (...args) => {
+// 		const key = args.join();
+// 		let result = cache.get(key);
+// 		if (result) {
+// 			return result;
+// 		} else {
+// 			result = fn(...args);
+// 			cache.set(key, result);
+// 			return result;
+// 		}
+// 	};
 // };
-// const add = (num) => num + 10;
-const fib = (pos) => pos < 2 ? pos : fib(pos - 1) + fib(pos - 2);
-const fact = (pos) => pos == 0 ? 1 : pos * fact(pos - 1);
-const memoizationFib = memoize(fib);
-const memoizationFact = memoize(fact);
-console.time("memofib");
-console.log(memoizationFib(30));
-console.log(memoizationFib(30));
-console.log(memoizationFib(40));
-console.log(memoizationFib(40));
-console.timeEnd("memofib");
 
-console.time("memofact");
-console.log(memoizationFact(10));
-console.log(memoizationFact(10));
-console.log(memoizationFact(20));
-console.log(memoizationFact(20));
-console.timeEnd("memofact");
+// const factMemoMap = memoizeMap(n => n == 0 ? 1 : n * factMemoMap(n - 1));
+// console.time("Fact");
+// console.log(factMemoMap(10));
+// console.log(factMemoMap(10));
+// console.log(factMemoMap(20));
+// console.log(factMemoMap(20));
+// console.timeEnd("Fact");
 
-function fibMemo(n, prevValue = []) {
-  if (prevValue[n] != null) return prevValue[n];
-  let result = n <= 2 ? 1 : fibMemo(n - 1, prevValue) + fibMemo(n - 2, prevValue);
-  prevValue[n] = result;
-  return result;
-}
+// const fibMemoMap = memoizeMap(pos => pos < 2 ? pos : fibMemoMap(pos - 1) + fibMemoMap(pos - 2));
+// console.time("Fib");
+// console.log(fibMemoMap(40));
+// console.log(fibMemoMap(40));
+// console.log(fibMemoMap(100));
+// console.log(fibMemoMap(100));
+// console.timeEnd("Fib");
 
-console.time("fibmemo");
-console.log(fibMemo(100));
-console.log(fibMemo(100));
-console.log(fibMemo(40));
-console.log(fibMemo(40));
-console.timeEnd("fibmemo");
-
-const factMemo = (n, prevValue = []) => {
-  if (prevValue[n] != null) return prevValue[n];
-  let result = n == 0 ? 1 : n * factMemo(n - 1, prevValue[n]);
-  prevValue[n] = result;
-  return result;
+/**
+ * using object
+ */
+const memoizeObj = fn => {
+	const cache = {};
+	return (...args) => {
+		const key = args.join();
+		if (cache[key]) {
+			return cache[key];
+		} else {
+			const result = fn(...args);
+			cache[key] = result;
+			return result;
+		}
+	};
 };
 
+const factMemoObj = memoizeObj(n => n == 0 ? 1 : n * factMemoObj(n - 1));
+console.time("FactObj");
+console.log(factMemoObj(10));
+console.log(factMemoObj(10));
+console.log(factMemoObj(20));
+console.log(factMemoObj(20));
+console.timeEnd("FactObj");
 
-console.time("factmemo");
-console.log(factMemo(10));
-console.log(factMemo(10));
-console.log(factMemo(20));
-console.log(factMemo(20));
-console.timeEnd("factmemo");
+const fibMemoObj = memoizeObj(pos => pos < 2 ? pos : fibMemoObj(pos - 1) + fibMemoObj(pos - 2));
+console.time("FibObj");
+console.log(fibMemoObj(40));
+console.log(fibMemoObj(40));
+console.log(fibMemoObj(100));
+console.log(fibMemoObj(100));
+console.timeEnd("FibObj");
