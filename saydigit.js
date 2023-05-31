@@ -1,5 +1,5 @@
 function sayDigit(n, arr) {
-  if (n == 0) return;
+  if (n == 0) return n;
   const digit = n % 10;
   n = Math.floor(n / 10);
   sayDigit(n, arr);
@@ -27,7 +27,7 @@ function getSum(arr, size) {
 
 function sum() {
   let arr = [2, 4, 9, 9, 9];
-  return getSum(arr, 5);
+  return getSum(arr, arr.length);
 }
 console.time("Sum");
 console.log(sum());

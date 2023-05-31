@@ -1,36 +1,27 @@
-const timeLimit = (fn, t) => {
-  return async function (...args) {
-    return new Promise((delayresolve, reject) => {
-      const timeoutId = setTimeout(() => {
-        reject("Time Limit Exceeded");
-        clearTimeout(timeoutId);
-      }, t);
-      fn(...args)
-        .then((result) => {
-          delayresolve(result);
-          clearTimeout(timeoutId);
-        })
-        .catch((error) => {
-          reject(error);
-          clearTimeout(timeoutId);
-        });
+function promiseWithTimeLimit(fn, timeLimit) {
+  return async (...args) => {
+    const originalFnPromise = fn(...args);
+    const timeoutPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(new Error('Promise timed out').message);
+        clearTimeout(timeoutPromise);
+      }, timeLimit);
     });
+    return Promise.race([originalFnPromise, timeoutPromise]);
   };
-};
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function doSomething() {
-  await sleep(500);
-  console.log(new Date());
+function fetchData(delay = 1000) {
+  console.log('delay: ', delay);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/users').then(res => resolve(res.json()));
+    }, delay);
+  });
 }
 
-const timedDoSomething = timeLimit(doSomething, 1000);
+const timeLimitedPromise = promiseWithTimeLimit(fetchData, 500);
 
-timedDoSomething().then(() => {
-  console.log("Timed doSomething completed!");
-}, (error) => {
-  console.error(error);
-});
+timeLimitedPromise(2000)
+  .then(data => console.log(data))
+  .catch(error => console.error(error));

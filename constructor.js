@@ -27,7 +27,7 @@ class Animal {
   }
 
   speak() {
-    console.log(`${this.name} makes a noise.`);
+    return `${this.name} makes a noise.`;
   }
 }
 
@@ -37,15 +37,16 @@ class Dog extends Animal {
     this.breed = breed;
   }
 
-  speak() {
-    return `${this.name} barks.`;
-  }
+  // speak() {
+  //   return `${this.name} barks.`;
+  // }
 
   breedInfo() {
-    console.log(`${this.name} is a ${this.breed}., ${this.speak()}`);
+    return `${this.name} is a ${this.breed}, ${this.speak()}`;
   }
 }
+console.log(new Dog("Fido", "Labrador").breedInfo());
 
-const dog = new Dog('Fido', 'Labrador');
-dog.speak(); // logs 'Fido barks.'
-dog.breedInfo(); // logs 'Fido is a Labrador.'
+// const dog = new Dog('Fido', 'Labrador');
+// // dog.speak(); // logs 'Fido barks.'
+// console.log(dog.breedInfo()); // logs 'Fido is a Labrador.'
