@@ -72,3 +72,30 @@ function abc() {
 console.log(6);
 abc();
 console.log(7);
+
+const arr1 = [1, 3, 5, 7, 9];
+const arr2 = [2, 4, 6, 8];
+const arr = [...arr1, ...arr2];
+function sorting(arr) {
+  if (!arr.length) return arr;
+  let pivot = arr[Math.floor(arr.length / 2)];
+  let less = [];
+  let greater = [];
+  let equal = [];
+  for (let num of arr) {
+    if (num < pivot) {
+      less.push(num);
+    } else if (num > pivot) {
+      greater.push(num);
+    } else {
+      equal.push(num);
+    }
+  }
+  return [...sorting(less), ...equal, ...sorting(greater)];
+}
+console.time();
+console.log(sorting(arr));
+console.timeEnd();
+console.time();
+console.log(arr.sort((a, b) => a - b));
+console.timeEnd();

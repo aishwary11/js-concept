@@ -11,17 +11,14 @@ function promiseWithTimeLimit(fn, timeLimit) {
   };
 }
 
-function fetchData(delay = 1000) {
-  console.log('delay: ', delay);
+function fetchData(url, delay = 100) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      fetch('https://jsonplaceholder.typicode.com/users').then(res => resolve(res.json()));
-    }, delay);
+    setTimeout(() => fetch(url).then(res => resolve(res.json())).catch(err => reject(err)), delay);
   });
 }
 
-const timeLimitedPromise = promiseWithTimeLimit(fetchData, 500);
+const timeLimitedPromise = promiseWithTimeLimit(fetchData, 2000);
 
-timeLimitedPromise(2000)
+timeLimitedPromise('https://jsonplaceholder.typicode.com/users')
   .then(data => console.log(data))
   .catch(error => console.error(error));
