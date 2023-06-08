@@ -1,7 +1,6 @@
 const quickSort = (arr) => {
   if (arr.length <= 1) return arr;
-  const pivotIndex = Math.floor(arr.length / 2);
-  const pivot = arr[pivotIndex];
+  const pivot = arr[Math.floor(arr.length / 2)];
   const less = [], greater = [];
   for (let i = 0; i < arr.length; i++) {
     if (i === pivotIndex) continue;
