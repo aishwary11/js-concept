@@ -1,24 +1,20 @@
-function promiseWithTimeLimit(fn, timeLimit) {
-  return async (...args) => {
-    const originalFnPromise = fn(...args);
-    const timeoutPromise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject(new Error('Promise timed out').message);
-        clearTimeout(timeoutPromise);
-      }, timeLimit);
-    });
-    return Promise.race([originalFnPromise, timeoutPromise]);
-  };
-}
+const promiseWithTimeLimit = (fn, timeLimit) => async (...args) => {
+  let timeoutId;
+  const timeoutPromise = new Promise((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error('Promise timed out')), timeLimit);
+  });
+  return Promise.race([fn(...args), timeoutPromise]).finally(() => clearTimeout(timeoutId));
+};
 
 function fetchData(url, delay = 100) {
   return new Promise((resolve, reject) => {
     setTimeout(() => fetch(url).then(res => resolve(res.json())).catch(err => reject(err)), delay);
   });
 }
-
-const timeLimitedPromise = promiseWithTimeLimit(fetchData, 2000);
-
-timeLimitedPromise('https://jsonplaceholder.typicode.com/users')
+promiseWithTimeLimit(fetchData, 2000)('https://jsonplaceholder.typicode.com/users')
   .then(data => console.log(data))
-  .catch(error => console.error(error));
+  .catch(error => console.error(error.message));
+// const timeLimitedPromise = promiseWithTimeLimit(fetchData, 2000);
+// timeLimitedPromise('https://jsonplaceholder.typicode.com/users')
+//   .then(data => console.log(data))
+//   .catch(error => console.error(error));
