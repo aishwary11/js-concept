@@ -67,7 +67,10 @@ console.timeEnd("FibObj");
 
 
 const fibo = (n) => n < 2 ? n : fibo(n - 1) + fibo(n - 2);
+const fact = (n) => n == 0 ? 1 : n * fact(n - 1);
 console.time("....");
 console.log(fibo(40));
 console.log(fibo(40));
+console.log(fact(20));
+console.log(fact(20));
 console.timeEnd("....");
