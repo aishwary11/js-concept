@@ -6,8 +6,6 @@ for (let i = 0; i < input.length; i++) {
     if (input[i] !== temp && input[i + 1] !== input[i]) {
         result += input[i];
         temp = input[i];
-    } else {
-        temp = input[i];
-    }
+    } else temp = input[i];
 }
 console.log(result);
