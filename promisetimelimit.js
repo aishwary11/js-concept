@@ -6,7 +6,7 @@ const promiseWithTimeLimit = (fn, timeLimit) => async (...args) => {
   return Promise.race([fn(...args), timeoutPromise]).finally(() => clearTimeout(timeoutId));
 };
 
-function fetchData(url, delay = 100) {
+function fetchData(url, delay = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => fetch(url).then(res => resolve(res.json())).catch(err => reject(err)), delay);
   });
