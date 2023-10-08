@@ -39,7 +39,7 @@ const memoizeObj = fn => {
 	const cache = {};
 	return (...args) => {
 		const key = args.join();
-		if (cache[key]) {
+		if (key in cache) {
 			return cache[key];
 		} else {
 			const result = fn(...args);
