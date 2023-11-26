@@ -1,7 +1,7 @@
 const promiseWithTimeLimit = (fn, timeLimit) => async (...args) => {
   let timeoutId;
   const timeoutPromise = new Promise((_, reject) => {
-    timeoutId = setTimeout(() => reject(new Error('Promise timed out')), timeLimit);
+    timeoutId = setTimeout(() => reject(new Error('The request to ' + args[0] + ' timed out')), timeLimit);
   });
   return Promise.race([fn(...args), timeoutPromise]).finally(() => clearTimeout(timeoutId));
 };

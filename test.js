@@ -45,3 +45,11 @@ function reverseString(str) {
 
 console.log(reverseString('Aish*wa#ry')); // Output: yraw*hs#iA
 
+console.time("normal math");
+console.log(~~(Math.random() * 100000));
+console.timeEnd("normal math");
+
+console.time("math");
+console.log(Math.round(Math.random() * 100000));
+console.timeEnd("math")
+
