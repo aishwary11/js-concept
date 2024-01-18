@@ -1,13 +1,10 @@
-function recursion(data) {
-    console.log(data);
-    if (data > 0) {
-        data--;
-        recursion(data);
-    }
+function recursion(num = 10) {
+    if (num <= 0) return;
+    console.log(num);
+    recursion(num - 1);
 }
+recursion();
 
-recursion(100);
-
-for (let i = 100; i > 0; i--) {
-    // console.log(i);
-}
+// for (let i = 100; i > 0; i--) {
+// console.log(i);
+// }
