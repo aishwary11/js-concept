@@ -1,0 +1,8 @@
+{
+  "dev": {
+    "name": "dev"
+  },
+  "prod": {
+    "name": "prod"
+  }
+}
