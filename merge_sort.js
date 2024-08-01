@@ -1,7 +1,5 @@
 function merge(left, right) {
-  let result = [];
-  let leftIndex = 0;
-  let rightIndex = 0;
+  let result = [], leftIndex = 0, rightIndex = 0;
   while (leftIndex < left.length && rightIndex < right.length) {
     if (left[leftIndex] < right[rightIndex]) {
       result.push(left[leftIndex++]);
