@@ -1,21 +1,12 @@
-// call by value
-let obj1 = {
-  name: "Aish"
-};
-let obj2 = obj1;
-obj2.name = "Shah";
-console.log(obj1, obj2);
-console.log(obj1 === obj2);
+function changeValue(val, ref) {
+  val = 20;
+  ref.value = 20;
+}
 
+let num = 10;   // pass by value
+let obj = { value: 10 };    // pass by reference
 
-// call by reference
-let obj3 = {
-  name: "Aish"
-};
-console.log(obj1 === obj3);
-let arr1 = [1, 2, 3, 4];
-let arr2 = [1, 2, 3, 4];
-console.log(arr1 == arr2);
+changeValue(num, obj);
 
-let arr3 = arr1;
-console.log(arr3 == arr1);
+console.log("num:", num); // Outputs: num: 10
+console.log("obj.value:", obj.value); // Outputs: obj.value: 20

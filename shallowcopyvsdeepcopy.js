@@ -1,15 +1,23 @@
-// original object
-const originalObj = { name: 'John', age: 30, hobbies: ['reading', 'swimming'] };
+/** Shallow Copy - only one level copied */
+const obj = {
+  name: "Aishwary",
+  info: {
+    age: 30
+  }
+};
+const obj1 = { ...obj };
+obj1.name = "Shah";
+obj1.info.age = 40;
+console.log(obj, obj1);
 
-// shallow copy & also ... spread operator can be used for shallow copy
-const shallowCopy = Object.assign({}, originalObj);
-
-// deep copy
-const deepCopy = JSON.parse(JSON.stringify(originalObj));
-
-// modifying the original object
-originalObj.hobbies.push('hiking');
-
-console.log(originalObj); // { name: 'John', age: 30, hobbies: [ 'reading', 'swimming', 'hiking' ] }
-console.log(shallowCopy); // { name: 'John', age: 30, hobbies: [ 'reading', 'swimming', 'hiking' ] } (shallow copy is affected by change)
-console.log(deepCopy); // { name: 'John', age: 30, hobbies: [ 'reading', 'swimming' ] } (deep copy is not affected by change)
+/** Deep Copy - all levels copied */
+const objj = {
+  name: "Aishwary",
+  info: {
+    age: 30
+  }
+};
+const obj2 = structuredClone(objj);
+obj2.name = "Shah1";
+obj2.info.age = 35;
+console.log(objj, obj2);
