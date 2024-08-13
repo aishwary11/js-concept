@@ -12,7 +12,5 @@ function anagram(words) {
 }
 console.log(anagram(["eat", "ate", "done", "tea", "soup", "node"]));
 
-function isAnagram(str, target) {
-  return str.split('').sort().join('') === target.split('').sort().join('');
-}
+const isAnagram = (str, target) => str.split('').sort().join('') === target.split('').sort().join('');
 console.log(isAnagram("tea", "eat"));
