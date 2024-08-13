@@ -7,8 +7,8 @@ async function fetchData(url) {
 }
 async function fetcher() {
   await fetchData('https://jsonplaceholder.typicode.com/posts');
-  await fetchData('https://jsonplaceholder.typicode.com/posts');
-  await fetchData('https://jsonplaceholder.typicode.com/posts');
+  await fetchData('https://jsonplaceholder.typicode.com/todos');
+  await fetchData('https://jsonplaceholder.typicode.com/comments');
 };
 console.time();
 fetcher();
