@@ -22,3 +22,6 @@ function mergeSort(array) {
 console.time();
 console.log(mergeSort([4, 2, 6, 1, 3, 5]));
 console.timeEnd();
+console.time("sort");
+console.log([4, 2, 6, 1, 3, 5].sort((a, b) => a - b));
+console.timeEnd("sort");

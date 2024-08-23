@@ -1,7 +1,8 @@
 async function fetchData(url) {
   let cache = {};
   if (cache[url]) return cache[url];
-  const data = await fetch(url).then(res => res.json());
+  const resp = await fetch(url);
+  const data = await resp.json();
   cache[url] = data;
   return cache[url];
 }

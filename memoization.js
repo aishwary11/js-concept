@@ -49,7 +49,7 @@ const memoizeObj = fn => {
 	};
 };
 
-const factMemoObj = memoizeObj(n => n == 0 ? 1 : n * factMemoObj(n - 1));
+const factMemoObj = memoizeObj(n => n === 0 ? 1 : n * factMemoObj(n - 1));
 console.time("FactObj");
 console.log(factMemoObj(10));
 console.log(factMemoObj(10));
