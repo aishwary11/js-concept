@@ -26,3 +26,11 @@ String.prototype.strLength1 = function (fn) {
   return this.length;
 };
 console.log('Aishwary'.strLength1(i => i));
+
+Object.defineProperty(String.prototype, 'strLength2', {
+  value: function () {
+    return this.length;
+  }
+});
+
+console.log("\n\n", 'Aishwary'.strLength2());

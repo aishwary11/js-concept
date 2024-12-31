@@ -93,3 +93,38 @@ function match1(arr1, arr2) {
 }
 console.log(match(alphaArr1, alphaArr2));
 console.log(match1(alphaArr1, alphaArr2));
+
+const obj = {
+  designation: {
+    position: "Developer",
+    seniorPosition: "Senior Developer"
+  },
+  name: "Aishwary",
+};
+
+function optimizedRecursiveObj(obj, target) {
+  if (obj === target) return true;
+  if (typeof obj !== 'object' || obj === null) return false;
+  for (let key in obj) {
+    if (obj[key] === target) return true;
+    if (typeof obj[key] === 'object') {
+      if (optimizedRecursiveObj(obj[key], target)) return true;
+    }
+  }
+  return false;
+}
+
+function recursiveObj(obj, target) {
+  if (obj === target) return true;
+  if (typeof obj !== 'object' || obj === null) return false;
+  for (let key in obj) {
+    if (recursiveObj(obj[key], target)) return true;
+  }
+  return false;
+}
+console.time("optimized");
+console.log(optimizedRecursiveObj(obj, "Senior Developer"));
+console.timeEnd("optimized");
+console.time();
+console.log(recursiveObj(obj, "Senior Developer"));
+console.timeEnd();
