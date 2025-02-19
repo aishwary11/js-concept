@@ -4,7 +4,7 @@ let userName = {
   lastName: "Shah",
 };
 let printFullName = function (homeTown, state) {
-  console.log(this.firstName + " " + this.lastName + " from " + homeTown + ", " + state);
+  console.log(`${this.firstName} ${this.lastName} from ${homeTown}, ${state}`);
 };
 
 let userName1 = {
