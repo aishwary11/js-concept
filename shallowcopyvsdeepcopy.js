@@ -1,4 +1,4 @@
-/** Shallow Copy - only one level copied */
+/** Shallow Copy - copies only the first level, nested objects maintain references */
 const obj = {
   name: "Aishwary",
   surname: "Shah",
