@@ -1,11 +1,9 @@
 /** Debouncing - delaying the execution of a function */
-const debounce = (func, delay) => {
+const debounce = (func, delay = 500) => {
   let timeoutId;
   return (...args) => {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func(...args);
-    }, delay);
+    timeoutId = setTimeout(() => func(...args), delay);
   };
 };
 
@@ -18,7 +16,6 @@ debouncedSearch('orange');
 debouncedSearch('pear');
 
 /** Throttling - limiting the rate at which a function is called */
-
 const throttleFunc = (func, delay = 5000) => {
   let shouldWait = false;
   return (...args) => {
@@ -33,4 +30,8 @@ const throttleFunc = (func, delay = 5000) => {
 
 const cons = () => console.log('logger throttle');
 
-throttleFunc(cons(), 3000);
+const throttledCons = throttleFunc(cons, 3000);
+
+throttledCons();
+throttledCons();
+throttledCons();
