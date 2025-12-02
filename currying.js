@@ -24,11 +24,16 @@ const add = a => b => c => a + b + c;
  * @Curry @function
  */
 
-const curry = fn => {
-  return function curried(...args) {
-    return fn.length !== args.length ? curried.bind(null, ...args) : fn(...args);
+const curry = (fn, arity = fn.length) => {
+  const curried = (...args) => {
+    if (args.length >= arity) {
+      return fn(...args);
+    }
+    return (...next) => curried(...args, ...next);
   };
+  return curried;
 };
+
 const total = (x, y, z, a) => x + y + z - a;
 console.log(curry(total)(10)(20)(30)(40));
 const addCurry = (a) => (b) => (c) => a + b + c;

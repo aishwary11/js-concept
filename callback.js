@@ -14,9 +14,6 @@ callbacker(1, ({ status, data }) => console.log(status, data));
 /**
  * with 2 callback function
  */
-function callback(num, result, error) {
-  if (typeof num === "number") result({ msg: "Its a number", num });
-  else error({ msg: "Its a String", num });
-}
+const callback = (num, result, error) => typeof num === "number" ? result({ msg: "Its a number", num }) : error({ msg: "Its a String", num });
 
 callback("1", (res) => console.log(res), (err) => console.error(err));

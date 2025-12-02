@@ -1,6 +1,8 @@
 // Demonstrates pass-by-value with a primitive
 function changePrimitive(primitive) {
-  primitive = 20; // This change won't affect the original variable
+  let localValue = primitive; // Store the parameter value
+  localValue = 20; // Modify the local copy
+  console.log("Inside function:", localValue); // Show local modification
 }
 
 let num = 10;

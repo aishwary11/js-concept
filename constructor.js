@@ -46,7 +46,3 @@ class Dog extends Animal {
   }
 }
 console.log(new Dog("Fido", "Labrador").breedInfo());
-
-// const dog = new Dog('Fido', 'Labrador');
-// // dog.speak(); // logs 'Fido barks.'
-// console.log(dog.breedInfo()); // logs 'Fido is a Labrador.'

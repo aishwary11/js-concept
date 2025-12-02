@@ -4,19 +4,19 @@ const double = x => x * 2;
 const sphere = x => Math.PI * x;
 
 // function composition
-let output_final1 = compose1(square, double, sphere)(2);
+let output_final1 = compose1(sphere, double, square)(2);
 
 console.time("Method 1");
 console.log(output_final1);
 console.timeEnd("Method 1");
 
 const compose2 = (...fns) => x => {
-  for (let idx = fns.length - 1; idx >= 0; idx--) {
-    x = fns[idx](x);
+  for (let i = fns.length - 1; i >= 0; i--) {
+    x = fns[i](x);
   }
   return x;
 };
-let output_final2 = compose2(square, double, sphere)(2);
+let output_final2 = compose2(sphere, double, square)(2);
 
 console.time("Method 2");
 console.log(output_final2);

@@ -1,4 +1,3 @@
-// function borrowing (call)
 let userName = {
   firstName: "Aishwary",
   lastName: "Shah",
